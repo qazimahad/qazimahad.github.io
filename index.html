@@ -77,12 +77,12 @@
 
         /* Hero Section with Creative Image */
         .hero {
-            padding: 180px 8% 100px 8%;
+            padding: 160px 8% 80px 8%;
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 60px;
-            min-height: 90vh;
+            min-height: 85vh;
             background: radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 45%);
         }
 
@@ -213,6 +213,42 @@
             color: #fff;
         }
 
+        /* Stats Counter Banner */
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            padding: 0 20px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent);
+        }
+
+        .stat-card h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
         /* Floating WhatsApp Button */
         .whatsapp-float {
             position: fixed;
@@ -241,7 +277,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 90px 20px;
+            padding: 70px 20px;
         }
 
         .section-title {
@@ -261,6 +297,34 @@
             color: var(--text-muted);
             margin-bottom: 40px;
             font-size: 1.05rem;
+        }
+
+        /* Filter Tab Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 10px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            color: #090d16;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         /* Services Grid */
@@ -342,6 +406,10 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+        }
+
+        .project-card.hide {
+            display: none;
         }
 
         .project-card:hover {
@@ -496,8 +564,7 @@
         <nav>
             <a href="#about">About</a>
             <a href="#services">Expertise</a>
-            <a href="#projects">Live Websites</a>
-            <a href="#sqa">SQA & Testing</a>
+            <a href="#projects">Portfolio</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -509,7 +576,7 @@
             <h1>Designed & Developed Websites for <span>Global Clients</span></h1>
             <p>Showcasing 9 fully custom-designed and developed client websites across NGO, e-commerce, corporate, and healthcare sectors—backed by 3+ years of rigorous SQA testing experience.</p>
             <div class="btn-group">
-                <a href="#projects" class="btn">View Live Websites</a>
+                <a href="#projects" class="btn">View Live Portfolio</a>
                 <a href="https://wa.me/923335158850?text=Hi%20Mahad,%20I%20saw%20your%20portfolio%20and%20want%20to%20discuss%20a%20project." target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
             </div>
         </div>
@@ -519,8 +586,28 @@
         </div>
     </section>
 
+    <!-- Stats Counter Banner -->
+    <div class="stats-banner">
+        <div class="stat-card">
+            <h3>9+</h3>
+            <p>Client Websites Built</p>
+        </div>
+        <div class="stat-card">
+            <h3>3+</h3>
+            <p>Years SQA & Testing</p>
+        </div>
+        <div class="stat-card">
+            <h3>5+</h3>
+            <p>Years Digital Marketing & SEO</p>
+        </div>
+        <div class="stat-card">
+            <h3>100%</h3>
+            <p>Client Delivery Success</p>
+        </div>
+    </div>
+
     <!-- Services Section -->
-    <div class="container" id="services">
+    <div class="container" id="services" style="padding-top: 20px;">
         <h2 class="section-title">Core <span>Expertise</span></h2>
         <p class="section-subtitle">Delivering high quality across full-stack website development, software testing, and digital marketing.</p>
         
@@ -566,15 +653,23 @@
         </div>
     </div>
 
-    <!-- Live Websites Portfolio Section (9 Projects) -->
+    <!-- Portfolio & Projects Section with Interactive Filter Tabs -->
     <div class="container" id="projects">
-        <h2 class="section-title">Designed & Developed <span>Live Websites</span></h2>
-        <p class="section-subtitle">Explore the 9 complete professional websites I have designed, built, and launched for clients.</p>
+        <h2 class="section-title">Project <span>Portfolio</span></h2>
+        <p class="section-subtitle">Explore my custom client websites and SQA testing experience filtered by category.</p>
 
-        <div class="projects-grid">
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+            <button class="filter-btn" onclick="filterProjects('web')">Websites & E-Commerce</button>
+            <button class="filter-btn" onclick="filterProjects('ngo')">NGO & Social Welfare</button>
+            <button class="filter-btn" onclick="filterProjects('sqa')">SQA & Testing Experience</button>
+        </div>
+
+        <div class="projects-grid" id="projectGrid">
             
-            <!-- 1. Alkhidmat Islamabad -->
-            <div class="project-card">
+            <!-- 1. Alkhidmat Islamabad (NGO) -->
+            <div class="project-card" data-category="ngo">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=600&q=80" alt="Alkhidmat Foundation Islamabad Website">
                 </div>
@@ -591,8 +686,8 @@
                 </div>
             </div>
 
-            <!-- 2. Bano Qabil -->
-            <div class="project-card">
+            <!-- 2. Bano Qabil (Web) -->
+            <div class="project-card" data-category="web">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80" alt="Bano Qabil Program Website">
                 </div>
@@ -609,8 +704,8 @@
                 </div>
             </div>
 
-            <!-- 3. Young Malang -->
-            <div class="project-card">
+            <!-- 3. Young Malang (Web) -->
+            <div class="project-card" data-category="web">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Young Malang E-Commerce Website">
                 </div>
@@ -627,8 +722,8 @@
                 </div>
             </div>
 
-            <!-- 4. ElseWare UK -->
-            <div class="project-card">
+            <!-- 4. ElseWare UK (Web) -->
+            <div class="project-card" data-category="web">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="ElseWare UK Software Website">
                 </div>
@@ -645,8 +740,8 @@
                 </div>
             </div>
 
-            <!-- 5. RSA Pakistan -->
-            <div class="project-card">
+            <!-- 5. RSA Pakistan (Web) -->
+            <div class="project-card" data-category="web">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80" alt="RSA Pakistan Roadside Assistance Website">
                 </div>
@@ -663,8 +758,8 @@
                 </div>
             </div>
 
-            <!-- 6. CPI Mohr -->
-            <div class="project-card">
+            <!-- 6. CPI Mohr (NGO) -->
+            <div class="project-card" data-category="ngo">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80" alt="Child Protection Institute Website">
                 </div>
@@ -681,8 +776,8 @@
                 </div>
             </div>
 
-            <!-- 7. GM Cars UK -->
-            <div class="project-card">
+            <!-- 7. GM Cars UK (Web) -->
+            <div class="project-card" data-category="web">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=600&q=80" alt="GM Cars UK Website">
                 </div>
@@ -699,8 +794,8 @@
                 </div>
             </div>
 
-            <!-- 8. RWP Law College -->
-            <div class="project-card">
+            <!-- 8. RWP Law College (Web) -->
+            <div class="project-card" data-category="web">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80" alt="RWP Law College Website">
                 </div>
@@ -717,8 +812,8 @@
                 </div>
             </div>
 
-            <!-- 9. Oncology Panel -->
-            <div class="project-card">
+            <!-- 9. Oncology Panel (Web) -->
+            <div class="project-card" data-category="web">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80" alt="Oncology Panel Medical Website">
                 </div>
@@ -735,17 +830,8 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-
-    <!-- SQA & Testing Experience Section -->
-    <div class="container" id="sqa" style="background: rgba(19, 28, 49, 0.4); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-        <h2 class="section-title">SQA & <span>Testing Experience</span></h2>
-        <p class="section-subtitle">Ensuring bulletproof performance across Web Apps, Mobile Platforms, APIs, and SQL DB Verification.</p>
-
-        <div class="projects-grid">
-            
-            <div class="project-card">
+            <!-- 10. SQA Project 1 -->
+            <div class="project-card" data-category="sqa">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80" alt="Digital Health Apps">
                 </div>
@@ -753,7 +839,7 @@
                     <div>
                         <div class="project-tags">
                             <span class="tag">Mobile Apps</span>
-                            <span class="tag">Digital Health</span>
+                            <span class="tag">Digital Health SQA</span>
                         </div>
                         <h4>WEBDOC & Healthline Apps (Android & iOS)</h4>
                         <p>Executed manual functional, UAT, and negative testing for package subscriptions, video consultations, and appointment booking flows.</p>
@@ -762,14 +848,15 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <!-- 11. SQA Project 2 -->
+            <div class="project-card" data-category="sqa">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=600&q=80" alt="FinTech Direct Debit">
                 </div>
                 <div class="project-content">
                     <div>
                         <div class="project-tags">
-                            <span class="tag">FinTech</span>
+                            <span class="tag">FinTech SQA</span>
                             <span class="tag">Postman APIs & SQL</span>
                         </div>
                         <h4>Direct Debit System (UAE)</h4>
@@ -779,7 +866,8 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <!-- 12. SQA Project 3 -->
+            <div class="project-card" data-category="sqa">
                 <div class="project-img-wrapper">
                     <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80" alt="Mini Apps & Fintech">
                 </div>
@@ -787,7 +875,7 @@
                     <div>
                         <div class="project-tags">
                             <span class="tag">FinTech Mini-Apps</span>
-                            <span class="tag">Regression</span>
+                            <span class="tag">Regression SQA</span>
                         </div>
                         <h4>EP Mini App, Zindagi & BiteME</h4>
                         <p>Validated multi-environment user journeys, payment gateways, OTP SMS notifications, and security access controls.</p>
@@ -820,6 +908,25 @@
     <footer>
         <p>&copy; 2026 Mahad Ali Zafar. All rights reserved. Built with clean code for live hosting servers.</p>
     </footer>
+
+    <!-- Filter Script -->
+    <script>
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
